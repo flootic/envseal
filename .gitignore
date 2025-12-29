@@ -24,6 +24,9 @@ profile.cov
 go.work
 go.work.sum
 
+# go build
+bin/
+
 # env file
 .env
 
@@ -35,5 +38,6 @@ go.work.sum
 *envseal.yaml
 *envseal.*.yaml
 *secrets*
-# Added by goreleaser init:
+
+# goreleaser
 dist/

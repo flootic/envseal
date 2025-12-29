@@ -1,7 +1,7 @@
 # EnvSeal CLI
 
 [![ci](https://github.com/flootic/envseal/actions/workflows/ci.yaml/badge.svg)](https://github.com/flootic/envseal/actions/workflows/ci.yaml)
-[![Go Reference](https://pkg.go.dev/badge/github.com/envseal/cli.svg)](https://pkg.go.dev/github.com/envseal/cli)
+[![Go Reference](https://pkg.go.dev/badge/github.com/flootic/envseal.svg)](https://pkg.go.dev/github.com/flootic/envseal)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 **EnvSeal** is a decentralized, *local-first*, cloud-agnostic secret management CLI tool. Unlike traditional solutions, it does not store your secrets on a central server. Instead, it uses asymmetric cryptography to store encrypted secrets directly in your Git repository (Single Source of Truth) and uses a P2P protocol for the secure distribution of access keys among developers.
@@ -23,7 +23,7 @@ You can install EnvSeal CLI using Go:
 go install github.com/envseal/cli@latest
 ```
 
-Alternatively, you can download pre-built binaries from the [releases page](https://github.com/envseal/cli/releases)
+Alternatively, you can download pre-built binaries from the [releases page](https://github.com/flootic/envseal/releases)
 or install via Homebrew on macOS:
 
 ```bash

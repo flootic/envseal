@@ -1,4 +1,4 @@
-module github.com/xfrr/envseal-cli
+module github.com/xfrr/envseal
 
 go 1.25.1
 

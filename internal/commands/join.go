@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/xfrr/envseal-cli/internal/crypto"
-	"github.com/xfrr/envseal-cli/internal/p2p"
+	"github.com/xfrr/envseal/internal/crypto"
+	"github.com/xfrr/envseal/internal/p2p"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"

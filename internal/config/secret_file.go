@@ -12,8 +12,8 @@ import (
 	"filippo.io/age"
 	"gopkg.in/yaml.v3"
 
-	"github.com/xfrr/envseal-cli/internal/crypto"
-	"github.com/xfrr/envseal-cli/pkg/filesystem"
+	"github.com/xfrr/envseal/internal/crypto"
+	"github.com/xfrr/envseal/pkg/filesystem"
 )
 
 const (

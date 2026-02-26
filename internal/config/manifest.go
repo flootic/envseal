@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/xfrr/envseal-cli/pkg/filesystem"
+	"github.com/xfrr/envseal/pkg/filesystem"
 	"gopkg.in/yaml.v3"
 )
 

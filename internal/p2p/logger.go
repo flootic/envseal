@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/xfrr/envseal-cli/internal/config"
+	"github.com/xfrr/envseal/internal/config"
 )
 
 var initLoggerOnce sync.Once

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/xfrr/envseal-cli/internal/config"
+	"github.com/xfrr/envseal/internal/config"
 )
 
 func checkProjectManifest(deps Deps) func() error {

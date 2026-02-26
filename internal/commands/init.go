@@ -11,8 +11,8 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 
-	"github.com/xfrr/envseal-cli/internal/config"
-	"github.com/xfrr/envseal-cli/pkg/filesystem"
+	"github.com/xfrr/envseal/internal/config"
+	"github.com/xfrr/envseal/pkg/filesystem"
 )
 
 func NewInitCommand(deps Deps) *cobra.Command {

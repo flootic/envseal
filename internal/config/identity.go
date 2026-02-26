@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	DefaultIdentityFileName = "identity"
-	DefaultIdentityDir      = ".envseal"
+	IdentityFileName = "identity"
+	Directory        = ".envseal"
 )
 
 // GetDefaultIdentityFilePath returns the default path to the identity file
@@ -18,5 +18,5 @@ func GetDefaultIdentityFilePath() (string, error) {
 		return "", err
 	}
 
-	return filepath.Join(home, DefaultIdentityDir, DefaultIdentityFileName), nil
+	return filepath.Join(home, Directory, IdentityFileName), nil
 }

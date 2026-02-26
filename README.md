@@ -23,12 +23,40 @@ You can install EnvSeal CLI using Go:
 go install github.com/envseal/cli@latest
 ```
 
-Alternatively, you can download pre-built binaries from the [releases page](https://github.com/flootic/envseal/releases)
-or install via Homebrew on macOS:
+Alternatively, you can download pre-built binaries from the [releases page](https://github.com/flootic/envseal/releases).
 
-```bash
-brew install envseal/tap/envseal
-```
+## Example
+
+1. Initialize EnvSeal in your Git repository:
+
+    ```bash
+    cd my-project
+    envseal init
+    ```
+
+2. Set a new secret:
+
+    ```bash
+    envseal set DATABASE_URL=postgres://user:password@localhost:5432/mydb
+    ```
+
+3. Add a user with their public key:
+
+    ```bash
+    envseal users add alice ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEArv...
+    ```
+
+4. Rekey the secrets to update access permissions:
+
+    ```bash
+    envseal rekey --rotate
+    ```
+
+5. Print all secrets (for debugging purposes):
+
+    ```bash
+    envseal exec -- printenv | grep SECRET_
+    ```
 
 ## Usage
 
@@ -40,9 +68,12 @@ envseal set <key>=<value>               # Set a new secret
 envseal unset <key>                     # Remove a secret
 envseal users add <user> <public_key>   # Add a user with their public key
 envseal users remove <user>             # Remove a user
+envseal join                            # Request access to a project using p2p (mDNS) and 6-digit code.
 envseal rekey [--rotate]                # Encrypt secrets and update access permissions
 envseal exec -- <command>               # Execute a command with secrets injected into the environment
 envseal doctor                          # Check the integrity of your EnvSeal setup
+envseal print                           # Print all secrets in plaintext (for debugging purposes)
+envseal whoami                          # Print the public key of the current identity
 ```
 
 Print all commands with `envseal --help` and get detailed help for each command with `envseal <command> --help`.

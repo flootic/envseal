@@ -321,6 +321,26 @@ func (sf *SecretFile) Save() error {
 	return filesystem.AtomicWriteFile(sf.path, data, 0o600)
 }
 
+// GetRecipients returns the list of public keys currently embedded in the encrypted file header.
+func (sf *SecretFile) GetRecipients() ([]string, error) {
+	metaInterface, ok := sf.RawData[MetadataKey]
+	if !ok {
+		return nil, errors.New("missing _envseal metadata block")
+	}
+
+	metaBytes, _ := yaml.Marshal(metaInterface)
+	var meta Metadata
+	if err := yaml.Unmarshal(metaBytes, &meta); err != nil {
+		return nil, err
+	}
+
+	var keys []string
+	for _, r := range meta.Recipients {
+		keys = append(keys, r.Arg)
+	}
+	return keys, nil
+}
+
 // GetAllSecrets returns a map with all decrypted secrets.
 // It reads from `secrets:` and also includes legacy top-level entries (excluding reserved keys).
 func (sf *SecretFile) GetAllSecrets() (map[string]string, error) {

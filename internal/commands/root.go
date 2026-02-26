@@ -51,8 +51,10 @@ func Execute() error {
 	rootCmd.AddCommand(NewUnsetCommand(deps))
 	rootCmd.AddCommand(NewUsersCommand(deps))
 	rootCmd.AddCommand(NewRekeyCommand(deps))
+	rootCmd.AddCommand(NewJoinCommand(deps))
 	rootCmd.AddCommand(NewDoctorCommand(deps))
 	rootCmd.AddCommand(NewPrintCommand(deps))
 	rootCmd.AddCommand(NewWhoamiCommand(deps))
+	rootCmd.AddCommand(NewStatusCommand(deps))
 	return rootCmd.Execute()
 }

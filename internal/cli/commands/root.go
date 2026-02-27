@@ -2,7 +2,10 @@ package commands
 
 import (
 	"fmt"
+	"os"
+	"strings"
 
+	"github.com/xfrr/envseal/internal/cli/audit"
 	"github.com/xfrr/envseal/internal/cli/config"
 
 	"github.com/spf13/cobra"
@@ -19,6 +22,15 @@ func Execute() error {
 		Short:   "Secure Git-native secrets management for teams.",
 		Long:    "EnvSeal is a CLI tool to manage encrypted secrets files in your git repositories. It allows teams to securely share secrets without relying on external services.",
 		Version: "v0.1.0",
+		PersistentPreRun: func(cmd *cobra.Command, args []string) {
+			cmdPath := strings.TrimPrefix(cmd.CommandPath(), "envseal ")
+			message := strings.Join(os.Args[1:], " ")
+			if cmdPath == message {
+				message = ""
+			}
+
+			_ = audit.Log(cmdPath, message)
+		},
 	}
 
 	rootCmd.PersistentFlags().StringVarP(
@@ -56,5 +68,6 @@ func Execute() error {
 	rootCmd.AddCommand(NewPrintCommand(deps))
 	rootCmd.AddCommand(NewWhoamiCommand(deps))
 	rootCmd.AddCommand(NewStatusCommand(deps))
+	rootCmd.AddCommand(NewAuditLogCommand())
 	return rootCmd.Execute()
 }

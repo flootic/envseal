@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"github.com/xfrr/envseal/internal/config"
+	"github.com/xfrr/envseal/internal/cli/config"
 
 	"github.com/spf13/cobra"
 )

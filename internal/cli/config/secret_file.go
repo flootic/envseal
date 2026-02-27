@@ -12,7 +12,7 @@ import (
 	"filippo.io/age"
 	"gopkg.in/yaml.v3"
 
-	"github.com/xfrr/envseal/internal/crypto"
+	"github.com/xfrr/envseal/internal/cli/crypto"
 	"github.com/xfrr/envseal/pkg/filesystem"
 )
 

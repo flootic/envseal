@@ -2,8 +2,8 @@ package commands
 
 import (
 	"filippo.io/age"
-	"github.com/xfrr/envseal/internal/config"
-	"github.com/xfrr/envseal/internal/crypto"
+	"github.com/xfrr/envseal/internal/cli/config"
+	"github.com/xfrr/envseal/internal/cli/crypto"
 )
 
 type IdentityStore interface {

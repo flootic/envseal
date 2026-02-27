@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/xfrr/envseal/internal/commands"
+	"github.com/xfrr/envseal/internal/cli/commands"
 )
 
 var (

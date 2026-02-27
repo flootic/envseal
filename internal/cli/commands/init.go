@@ -11,7 +11,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 
-	"github.com/xfrr/envseal/internal/config"
+	"github.com/xfrr/envseal/internal/cli/config"
 	"github.com/xfrr/envseal/pkg/filesystem"
 )
 

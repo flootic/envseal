@@ -153,7 +153,7 @@ Depending on how large the project is, you may want to outsource the questioning
 
 ## Project Structure
 
-- `cmd/cli/` - Command-line interface entry point
+- `cmd/envseal-cli/` - Command-line interface entry point
 - `internal/commands/` - CLI command implementations
 - `internal/config/` - Configuration and manifest handling
 - `internal/crypto/` - Cryptographic operations

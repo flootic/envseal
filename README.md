@@ -20,7 +20,7 @@
 You can install EnvSeal CLI using Go:
 
 ```bash
-go install github.com/flootic/envseal/cmd/cli@latest
+go install github.com/flootic/envseal/cmd/envseal-cli@latest
 ```
 
 Alternatively, you can download pre-built binaries from the [releases page](https://github.com/flootic/envseal/releases).
@@ -43,7 +43,7 @@ Alternatively, you can download pre-built binaries from the [releases page](http
 3. Add a user with their public key:
 
     ```bash
-    envseal users add alice ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEArv...
+    envseal users add alice <public_key>
     ```
 
 4. Rekey the secrets to update access permissions:

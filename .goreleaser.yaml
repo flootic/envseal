@@ -8,7 +8,7 @@ before:
 
 builds:
 - id: envseal
-  main: ./cmd/cli
+  main: ./cmd/envseal-cli
   binary: envseal
   env:
   - CGO_ENABLED=0

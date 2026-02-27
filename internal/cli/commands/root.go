@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/xfrr/envseal/internal/cli/audit"
-	"github.com/xfrr/envseal/internal/cli/config"
+	"github.com/flootic/envseal/internal/cli/audit"
+	"github.com/flootic/envseal/internal/cli/config"
 
 	"github.com/spf13/cobra"
 )

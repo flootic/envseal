@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xfrr/envseal/internal/cli/config"
+	"github.com/flootic/envseal/internal/cli/config"
 )
 
 const LogFileName = "audit.log"

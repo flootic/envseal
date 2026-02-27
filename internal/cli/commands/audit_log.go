@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/xfrr/envseal/internal/cli/audit"
+	"github.com/flootic/envseal/internal/cli/audit"
 
 	"github.com/spf13/cobra"
 )

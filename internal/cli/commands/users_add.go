@@ -11,8 +11,8 @@ import (
 
 	"filippo.io/age"
 	"github.com/fatih/color"
+	"github.com/flootic/envseal/internal/cli/p2p"
 	"github.com/spf13/cobra"
-	"github.com/xfrr/envseal/internal/cli/p2p"
 )
 
 var (

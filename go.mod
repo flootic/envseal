@@ -1,4 +1,4 @@
-module github.com/xfrr/envseal
+module github.com/flootic/envseal
 
 go 1.25.1
 

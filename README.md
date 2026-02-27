@@ -20,7 +20,7 @@
 You can install EnvSeal CLI using Go:
 
 ```bash
-go install github.com/flootic/envseal/cli@latest
+go install github.com/flootic/envseal/cmd/cli@latest
 ```
 
 Alternatively, you can download pre-built binaries from the [releases page](https://github.com/flootic/envseal/releases).

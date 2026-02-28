@@ -3,6 +3,7 @@ package commands
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
@@ -51,9 +52,16 @@ func newHookInstallCommand() *cobra.Command {
 }
 
 func runHookInstall(cmd *cobra.Command, args []string) error {
-	gitDir := ".git"
-	if _, err := os.Stat(gitDir); os.IsNotExist(err) {
+	out, err := exec.Command("git", "rev-parse", "--git-dir").Output()
+	if err != nil {
 		return fmt.Errorf("not a git repository (or any of the parent directories)")
+	}
+	gitDir := strings.TrimSpace(string(out))
+
+	// Resolve to an absolute path to avoid symlink attacks.
+	gitDir, err = filepath.EvalSymlinks(gitDir)
+	if err != nil {
+		return fmt.Errorf("failed to resolve git directory: %w", err)
 	}
 
 	hooksDir := filepath.Join(gitDir, "hooks")

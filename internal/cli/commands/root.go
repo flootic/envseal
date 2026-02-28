@@ -24,7 +24,7 @@ func Execute() error {
 		Version: "v0.1.0",
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
 			cmdPath := strings.TrimPrefix(cmd.CommandPath(), "envseal ")
-			message := strings.Join(os.Args[1:], " ")
+			message := strings.Join(audit.SanitizeArgs(os.Args[1:]), " ")
 			if cmdPath == message {
 				message = ""
 			}

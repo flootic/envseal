@@ -59,6 +59,23 @@ func LogCommand(args []string) error {
 	return Log(action, message)
 }
 
+// SanitizeArgs redacts values from KEY=VALUE arguments that could contain secrets.
+func SanitizeArgs(args []string) []string {
+	out := make([]string, len(args))
+	for i, arg := range args {
+		if strings.HasPrefix(arg, "-") {
+			out[i] = arg
+			continue
+		}
+		if key, _, ok := strings.Cut(arg, "="); ok {
+			out[i] = key + "=***"
+		} else {
+			out[i] = arg
+		}
+	}
+	return out
+}
+
 func currentUsername() string {
 	u, err := user.Current()
 	if err != nil {

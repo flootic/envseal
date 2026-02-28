@@ -46,7 +46,7 @@ func checkSecretsAccess(deps Deps) func() error {
 		}()
 
 		if err := sf.Unlock(id); err != nil {
-			return errors.New("access denied: your key cannot decrypt this file (ask admin to run 'envseal rekey')")
+			return errors.New("access denied: your key cannot decrypt this file (ask admin to run 'envseal-cli rekey')")
 		}
 		locked = false
 

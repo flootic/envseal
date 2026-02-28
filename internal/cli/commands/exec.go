@@ -17,8 +17,8 @@ func NewExecCommand(deps Deps) *cobra.Command {
 		Long: `Decrypts secrets in memory and starts a child process with them injected.
 
 Examples:
-  envseal exec -- npm start
-  envseal exec -- python app.py`,
+  envseal-cli exec -- npm start
+  envseal-cli exec -- python app.py`,
 		DisableFlagParsing: true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return runExec(cmd, args, deps)
@@ -30,12 +30,12 @@ Examples:
 func runExec(cmd *cobra.Command, args []string, deps Deps) error {
 	args = stripDoubleDash(args)
 	if len(args) == 0 {
-		return fmt.Errorf("you must specify a command after '--' (e.g. envseal exec -- npm start)")
+		return fmt.Errorf("you must specify a command after '--' (e.g. envseal-cli exec -- npm start)")
 	}
 
 	identity, err := deps.IdentityManager.Load(identityFilePath)
 	if err != nil {
-		return fmt.Errorf("identity error (run 'envseal init' first?): %w", err)
+		return fmt.Errorf("identity error (run 'envseal-cli init' first?): %w", err)
 	}
 
 	sf, err := deps.SecretsStore.Load(secretFilePath)

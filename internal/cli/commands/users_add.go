@@ -33,10 +33,10 @@ With --p2p, it is instead a 6-digit code from 'envseal join' which triggers
 a local network scan via mDNS to discover the public key.
 
 Note: Adding a user does NOT grant access to already-encrypted secrets.
-You must run 'envseal rekey' afterwards to update recipients.`,
-		Example: `  envseal users add jane age1ql3z7hjy54pw3hyww5...
-  envseal users add jane --p2p 482910
-  envseal users add ci-server age1yt8...`,
+You must run 'envseal-cli rekey' afterwards to update recipients.`,
+		Example: `  envseal-cli users add jane age1ql3z7hjy54pw3hyww5...
+  envseal-cli users add jane --p2p 482910
+  envseal-cli users add ci-server age1yt8...`,
 		Args: cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return runUsersAdd(cmd, args, deps)
@@ -130,5 +130,5 @@ func printUsersAddSuccess(cmd *cobra.Command, alias string) {
 	cmd.Println()
 	cmd.Println(yellow("⚠️  PENDING ACTION:"))
 	cmd.Printf("The user is listed, but %s access yet.\n", bold("DOES NOT HAVE"))
-	cmd.Printf("Run %s to update the encrypted file permissions.\n", bold("envseal rekey"))
+	cmd.Printf("Run %s to update the encrypted file permissions.\n", bold("envseal-cli rekey"))
 }

@@ -36,7 +36,7 @@ func runStatus(cmd *cobra.Command, deps Deps) error {
 	// Load Local Identity
 	identity, errIdentity := deps.IdentityManager.Load(identityFilePath)
 	if errIdentity != nil {
-		cmd.Printf("%-20s %s\n", "Local Identity:", red("Missing (run 'envseal init')"))
+		cmd.Printf("%-20s %s\n", "Local Identity:", red("Missing (run 'envseal-cli init')"))
 	} else {
 		pubKey := identity.Recipient().String()
 		cmd.Printf("%-20s %s...%s\n", "Local Identity:", green("OK "), pubKey[len(pubKey)-8:])
@@ -104,7 +104,7 @@ func runStatus(cmd *cobra.Command, deps Deps) error {
 
 	if len(manifestKeys) != len(fileKeys) {
 		cmd.Printf("\n%s\n", yellow("⚠️  DRIFT DETECTED: The manifest and the encrypted file are out of sync."))
-		cmd.Printf("    Run %s to apply changes.\n", bold("envseal rekey"))
+		cmd.Printf("    Run %s to apply changes.\n", bold("envseal-cli rekey"))
 	} else {
 		cmd.Printf("\n%s\n", green("✓ Vault is fully synchronized."))
 	}

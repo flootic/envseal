@@ -27,7 +27,7 @@ func NewJoinCommand(deps Deps) *cobra.Command {
 func runJoin(cmd *cobra.Command, deps Deps) error {
 	identity, err := deps.IdentityManager.Load(identityFilePath)
 	if err != nil {
-		return fmt.Errorf("identity error (run 'envseal init' first?): %w", err)
+		return fmt.Errorf("identity error (run 'envseal-cli init' first?): %w", err)
 	}
 
 	code, err := crypto.GenerateJoinCode()

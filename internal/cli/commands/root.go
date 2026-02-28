@@ -69,5 +69,6 @@ func Execute() error {
 	rootCmd.AddCommand(NewWhoamiCommand(deps))
 	rootCmd.AddCommand(NewStatusCommand(deps))
 	rootCmd.AddCommand(NewAuditLogCommand())
+	rootCmd.AddCommand(NewHookCommand())
 	return rootCmd.Execute()
 }

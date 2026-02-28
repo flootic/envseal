@@ -43,7 +43,7 @@ func validateSetArgs(cmd *cobra.Command, args []string) error {
 func runSet(cmd *cobra.Command, args []string, deps Deps) error {
 	identity, err := deps.IdentityManager.Load(identityFilePath)
 	if err != nil {
-		return fmt.Errorf("identity error (run 'envseal init' first?): %w", err)
+		return fmt.Errorf("identity error (run 'envseal-cli init' first?): %w", err)
 	}
 
 	sf, err := deps.SecretsStore.Load(secretFilePath)

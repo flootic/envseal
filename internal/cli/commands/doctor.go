@@ -104,7 +104,7 @@ func checkIdentityExists() error {
 		return nil
 	}
 	if os.IsNotExist(err) {
-		return fmt.Errorf("file not found at %s (run 'envseal init')", identityFilePath)
+		return fmt.Errorf("file not found at %s (run 'envseal-cli init')", identityFilePath)
 	}
 	return err
 }

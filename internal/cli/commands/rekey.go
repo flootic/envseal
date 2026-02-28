@@ -41,7 +41,7 @@ func runRekey(cmd *cobra.Command, deps Deps) error {
 
 	identity, err := deps.IdentityManager.Load(identityFilePath)
 	if err != nil {
-		return fmt.Errorf("identity error (run 'envseal init' first?): %w", err)
+		return fmt.Errorf("identity error (run 'envseal-cli init' first?): %w", err)
 	}
 
 	manifest, err := deps.ManifestStore.Load()

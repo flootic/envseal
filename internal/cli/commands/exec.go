@@ -1,10 +1,12 @@
 package commands
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
 	"os/signal"
+	"path/filepath"
 	"strings"
 	"syscall"
 
@@ -58,8 +60,17 @@ func runExec(_ *cobra.Command, args []string, deps Deps) error {
 	commandArgs := args[1:]
 
 	binaryPath, err := exec.LookPath(commandName)
+	if errors.Is(err, exec.ErrDot) {
+		return fmt.Errorf("refusing to run %q from the current directory — use an absolute path", commandName)
+	}
 	if err != nil {
 		return fmt.Errorf("command %q not found in PATH", commandName)
+	}
+
+	// Resolve to absolute path to prevent TOCTOU from relative PATH entries.
+	binaryPath, err = filepath.Abs(binaryPath)
+	if err != nil {
+		return fmt.Errorf("failed to resolve absolute path for %q: %w", commandName, err)
 	}
 
 	child := exec.Command(binaryPath, commandArgs...)

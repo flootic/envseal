@@ -31,31 +31,31 @@ Alternatively, you can download pre-built binaries from the [releases page](http
 
     ```bash
     cd my-project
-    envseal init
+    envseal-cli init
     ```
 
 2. Set a new secret:
 
     ```bash
-    envseal set DATABASE_URL=postgres://user:password@localhost:5432/mydb
+    envseal-cli set DATABASE_URL=postgres://user:password@localhost:5432/mydb
     ```
 
 3. Add a user with their public key:
 
     ```bash
-    envseal users add alice <public_key>
+    envseal-cli users add alice <public_key>
     ```
 
 4. Rekey the secrets to update access permissions:
 
     ```bash
-    envseal rekey --rotate
+    envseal-cli rekey --rotate
     ```
 
 5. Print all secrets (for debugging purposes):
 
     ```bash
-    envseal exec -- printenv | grep SECRET_
+    envseal-cli exec -- printenv | grep SECRET_
     ```
 
 ## Usage
@@ -63,20 +63,20 @@ Alternatively, you can download pre-built binaries from the [releases page](http
 After installation, you can start using EnvSeal CLI with the following commands:
 
 ```bash
-envseal init                            # Initialize EnvSeal in your Git repository
-envseal set <key>=<value>               # Set a new secret
-envseal unset <key>                     # Remove a secret
-envseal users add <user> <public_key>   # Add a user with their public key
-envseal users remove <user>             # Remove a user
-envseal join                            # Request access to a project using p2p (mDNS) and 6-digit code.
-envseal rekey [--rotate]                # Encrypt secrets and update access permissions
-envseal exec -- <command>               # Execute a command with secrets injected into the environment
-envseal doctor                          # Check the integrity of your EnvSeal setup
-envseal print                           # Print all secrets in plaintext (for debugging purposes)
-envseal whoami                          # Print the public key of the current identity
+envseal-cli init                            # Initialize EnvSeal in your Git repository
+envseal-cli set <key>=<value>               # Set a new secret
+envseal-cli unset <key>                     # Remove a secret
+envseal-cli users add <user> <public_key>   # Add a user with their public key
+envseal-cli users remove <user>             # Remove a user
+envseal-cli join                            # Request access to a project using p2p (mDNS) and 6-digit code.
+envseal-cli rekey [--rotate]                # Encrypt secrets and update access permissions
+envseal-cli exec -- <command>               # Execute a command with secrets injected into the environment
+envseal-cli doctor                          # Check the integrity of your EnvSeal setup
+envseal-cli print                           # Print all secrets in plaintext (for debugging purposes)
+envseal-cli whoami                          # Print the public key of the current identity
 ```
 
-Print all commands with `envseal --help` and get detailed help for each command with `envseal <command> --help`.
+Print all commands with `envseal-cli --help` and get detailed help for each command with `envseal-cli <command> --help`.
 
 ## Contributing
 

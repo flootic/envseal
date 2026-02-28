@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"os/signal"
+	"strings"
 	"syscall"
 
 	"github.com/spf13/cobra"
@@ -27,7 +28,7 @@ Examples:
 	return cmd
 }
 
-func runExec(cmd *cobra.Command, args []string, deps Deps) error {
+func runExec(_ *cobra.Command, args []string, deps Deps) error {
 	args = stripDoubleDash(args)
 	if len(args) == 0 {
 		return fmt.Errorf("you must specify a command after '--' (e.g. envseal-cli exec -- npm start)")
@@ -94,7 +95,14 @@ func stripDoubleDash(args []string) []string {
 
 func mergeEnv(base []string, vars map[string]string) []string {
 	out := make([]string, 0, len(base)+len(vars))
-	out = append(out, base...)
+	for _, entry := range base {
+		if key, _, ok := strings.Cut(entry, "="); ok {
+			if _, overridden := vars[key]; overridden {
+				continue
+			}
+		}
+		out = append(out, entry)
+	}
 
 	for k, v := range vars {
 		out = append(out, fmt.Sprintf("%s=%s", k, v))

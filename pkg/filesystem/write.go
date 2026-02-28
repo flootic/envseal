@@ -1,8 +1,10 @@
 package filesystem
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
+	"syscall"
 )
 
 func AtomicWriteFile(path string, data []byte, perm os.FileMode) error {
@@ -35,5 +37,33 @@ func AtomicWriteFile(path string, data []byte, perm os.FileMode) error {
 		return err
 	}
 
-	return os.Rename(tmpName, path)
+	if err := os.Rename(tmpName, path); err != nil {
+		if errors.Is(err, syscall.EXDEV) {
+			return directWriteFile(path, data, perm)
+		}
+		return err
+	}
+
+	return nil
+}
+
+// directWriteFile is a non-atomic fallback used when the target path
+// is on a different filesystem than the temp directory (EXDEV).
+func directWriteFile(path string, data []byte, perm os.FileMode) error {
+	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, perm)
+	if err != nil {
+		return err
+	}
+
+	if _, err := f.Write(data); err != nil {
+		_ = f.Close()
+		return err
+	}
+
+	if err := f.Sync(); err != nil {
+		_ = f.Close()
+		return err
+	}
+
+	return f.Close()
 }

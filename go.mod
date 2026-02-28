@@ -1,6 +1,6 @@
 module github.com/flootic/envseal
 
-go 1.25.1
+go 1.26
 
 require (
 	filippo.io/age v1.3.1

@@ -1,6 +1,7 @@
 package config
 
 import (
+	"crypto/subtle"
 	"errors"
 	"fmt"
 	"os"
@@ -459,9 +460,8 @@ func zeroBytes(b []byte) {
 	if b == nil {
 		return
 	}
-	for i := range b {
-		b[i] = 0
-	}
+	// Use ConstantTimeCopy to prevent compiler optimizations that might skip zeroing.
+	subtle.ConstantTimeCopy(1, b, make([]byte, len(b)))
 }
 
 func cloneBytes(b []byte) []byte {
